@@ -20,3 +20,14 @@ jobs:
       - name: 3. Chay Test
         # Bước này sẽ chạy file CalculatorTest.java của bạn
         run: mvn test
+
+      # Bước 4: Đóng gói code thành file .jar (Chỉ làm khi bước Test ở trên đã Pass)
+      - name: 4. Dong goi ung dung (Build JAR)
+        run: mvn clean package -DskipTests
+
+      # Bước 5: Deploy (Lưu file thành phẩm lên hệ thống GitHub)
+      - name: 5. Deploy va Xuat xuong file
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ung-dung-May-tinh
+          path: target/*.jar
